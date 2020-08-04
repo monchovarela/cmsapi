@@ -1,0 +1,123 @@
+
+  <div class="row mt-3">
+    <div class="col-xl-12">
+      <div class="float-left">
+        {If: App::isAdmin()}
+        <a href="{Site_url}/{$data.name}/new" class="btn btn-primary"
+          >New Article</a
+        >
+        {/If}
+        <a
+          target="_blank"
+          class="btn btn-info"
+          href="{Site_url}/api/{$data.name}/all/all"
+          >Json</a
+        >
+      </div>
+
+      <div class="float-right">
+        {If: $data.total > 0} {If: $data.num > 0}
+        <a
+          class="btn btn-default"
+          href="{Site_url}/{$data.name}/{?= $data.num - 1?}"
+          ><i class="fa fa-arrow-left"></i
+        ></a>
+        {/If}
+
+        <span class="m-3">{$data.num} - {$data.last}</span>
+        {If: $data.num < $data.last}
+        <a
+          class="btn btn-default"
+          href="{Site_url}/{$data.name}/{?= $data.num + 1?}"
+          ><i class="fa fa-arrow-right"></i
+        ></a>
+        {/If} {Else}
+        <div class="alert alert-danger">No articles yet</div>
+        {/If}
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-xl-12">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Search for title.."
+        id="myInput"
+        onkeyup="searchArticles('{$data.name}')"
+      />
+
+      <ul id="mySearch" class="ul small"></ul>
+
+      <table id="table" class="table table-responsive-lg table-striped mt-3">
+        <thead class="bg-dark text-light">
+          <tr>
+            <th class="text-align-center">#</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Published</th>
+            {If: App::isAdmin()}
+            <th class="text-align-center">Options</th>
+            {/If}
+          </tr>
+        </thead>
+        <tbody>
+          {If: $data.total > 0} {Loop: $data.articles as $item}
+          <tr>
+            <td class="text-align-center">{$item.uid}</td>
+            <td>
+              <a
+                target="_blank"
+                href="{Site_url}/api/{$data.name}/{$item.category}/{$item.name}"
+                >{$item.name|lower}</a
+              >
+            </td>
+            <td>{$item.title|short}</td>
+            <td>{$item.created}</td>
+            <td>{$item.updated}</td>
+            {If: $item.status}
+            <td class="text-primary text-align-center">True</td>
+            {Else}
+            <td class="text-danger text-align-center">False</td>
+            {/If} {If: App::isAdmin()}
+            <td class="text-align-center">
+
+              <div class="dropdown">
+                <button class="btn btn-sm btn-default dropdown-toggle"
+                        type="button" id="articleOptions" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-toolbox mr-2"></i> Options
+                </button>
+                <div class="dropdown-menu" aria-labelledby="articleOptions">
+                    <a
+                      target="_blank"
+                      href="{Site_url}/preview/{$data.name}/{$item.name}"
+                      class="dropdown-item"
+                      title="Preview">Preview</a>
+                    <a
+                        href="{Site_url}/{$data.name}/edit/{$item.uid}"
+                        class="dropdown-item"
+                        title="Edit">Edit</a>
+                    <a
+                      href="{Site_url}/{$data.name}/rename/{$item.uid}"
+                      class="dropdown-item"
+                      title="Rename">Rename</a>
+                    <a
+                      href="{Site_url}/{$data.name}/del/{$item.uid}"
+                      onclick="return confirm('Are you sure ?')"
+                      class="dropdown-item text-danger"
+                      title="Delete">Delete</a>
+                </div>
+              </div>
+
+            </td>
+            {/If}
+          </tr>
+          {/Loop} {/If}
+        </tbody>
+      </table>
+    </div>
+  </div>
+

@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="col-xl-12">
+    <div class="float-md-left mt-3">
+      {If: App::isAdmin()}
+      <a href="{Site_url}/{$data.name}/new" class="btn btn-primary"
+        >New Api</a
+      >
+      {/If}
+      <a
+        target="_blank"
+        class="btn btn-warning"
+        href="{Site_url}/api/{$data.name}/all"
+        >Json</a
+      >
+    </div>
+    <div class="float-md-right mt-3">
+      {If: $data.total > 0} {If: $data.num > 0}
+      <a
+        class="btn btn-default"
+        href="{Site_url}/{$data.name}/{?= $data.num - 1?}"
+        ><i class="fa fa-arrow-left"></i
+      ></a>
+      {/If}
+        <span class="btn btn-default">{$data.num} - {$data.last}</span>
+        {If: $data.num < $data.last}
+        <a
+          class="btn btn-default"
+          href="{Site_url}/{$data.name}/{?= $data.num + 1?}"
+          ><i class="fa fa-arrow-right"></i
+        ></a>
+        {/If} 
+      {/If}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12 mt-3">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Search for title.."
+      id="myInput"
+      onkeyup="searchPages('{$data.name}')"
+    />
+    <ul id="mySearch" class="list-group"></ul>
+    <table id="table" class="table table-responsive-lg table-striped mt-3">
+      <thead class="bg-dark text-light">
+        <tr>
+          <th class="center">#</th>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Updated</th>
+          <th>Published</th>
+          {If: App::isAdmin()}
+            <th class="center">Options</th>
+          {/If}
+        </tr>
+      </thead>
+      {If: $data.total > 0} 
+      {Loop: $data.vars as $item}
+      <tbody>
+        <tr>
+          <td class="center">{$item.uid}</td>
+          <td>
+            <a target="_blank" href="{Site_url}/api/{$data.name}/{$item.name}"
+              >{$item.name|lower}</a
+            >
+          </td>
+          <td>{$item.title|short}</td>
+          <td>{$item.updated}</td>
+          {If: $item.status}
+          <td class="text-blue center">True</td>
+          {Else}
+          <td class="text-red center">False</td>
+          {/If} {If: App::isAdmin()}
+          <td class="center">
+
+            <div class="dropdown">
+              <button class="btn btn-sm btn-default dropdown-toggle"
+                      type="button" id="ijson" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-toolbox mr-2"></i> Options
+              </button>
+              <div class="dropdown-menu" aria-labelledby="ijson">
+                <a
+                  href="{Site_url}/{$data.name}/edit/{$item.uid}"
+                  class="dropdown-item"
+                  title="Edit">Edit</a>
+                <a
+                  href="{Site_url}/{$data.name}/rename/{$item.uid}"
+                  class="dropdown-item"
+                  title="Rename">Rename</a>
+                <a
+                  href="{Site_url}/{$data.name}/del/{$item.uid}"
+                  onclick="return confirm('Are you sure ?')"
+                  class="dropdown-item text-danger"
+                  title="Delete">Delete</a>
+              </div>
+            </div>
+
+          </td>
+          {/If}
+        </tr>
+      </tbody>
+      {/Loop} 
+      {Else}
+      <p class="panel padding border round red">
+        No api vars yet
+      </p>
+      {/If}
+    </table>
+  </div>
+</div>
+

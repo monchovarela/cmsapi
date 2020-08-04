@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="float-left">
+      <a href="{Site_url}/{$data.name}/add" class="btn btn-primary"
+        >New User</a
+      >
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table id="table" class="table table-responsive-lg table-striped mt-3">
+      <thead class="bg-dark text-light">
+        <tr>
+          <th class="text-align-center">#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Created</th>
+          <th>Updated</th>
+          <th>Role</th>
+          <th class="text-align-center">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        {If: $data.total > 0} {Loop: $data.users as $item}
+        <tr>
+          <td class="text-align-center">{$item.uid}</td>
+          <td>{$item.name}</td>
+          <td class="text-primary">{$item.email}</td>
+          <td>{$item.created}</td>
+          <td>{$item.updated}</td>
+          <td>{$item.role}</td>
+          <td class="text-align-center">
+            <div class="dropdown">
+              <button
+                class="btn btn-sm btn-default dropdown-toggle"
+                type="button"
+                id="dropdownMenu1"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-toolbox mr-2"></i> Options
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <a
+                  href="{Site_url}/{$data.name}/edit/{$item.uid}"
+                  class="dropdown-item"
+                  title="Edit"
+                  >Edit user</a
+                >
+
+                {If: $item.name != Session::get('api_name')}
+                <a
+                  href="{Site_url}/{$data.name}/del/{$item.uid}"
+                  onclick="return confirm('Are you sure ?')"
+                  class="dropdown-item text-danger"
+                  title="Delete"
+                  >Delete user</a
+                >
+                {/If}
+              </div>
+            </div>
+          </td>
+        </tr>
+        {/Loop} {/If}
+      </tbody>
+    </table>
+  </div>
+</div>
+

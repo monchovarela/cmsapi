@@ -1,0 +1,34 @@
+<div class="container-fluid mt-3">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <input
+            type="text"
+            name="old"
+            class="form-control"
+            value="{$data.page.name}"
+            disabled
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="new"
+            class="form-control"
+            placeholder="Write new name"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="submit"
+            name="rename"
+            class="btn btn-primary"
+            value="Save"
+          />
+          <a href="{Site_url}/{$data.name}" class="btn btn-danger">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

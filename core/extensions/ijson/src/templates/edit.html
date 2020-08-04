@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row">
+    <form class="col-xl-12 mt-3" method="post">
+      <div class="row">
+        <div class="col-md-12 mt-3">
+          <input type="submit" id="store" name="update" class="btn btn-primary" value="Save">
+          <a href="{Site_url}/{$data.name}" class="btn btn-danger">Cancel</a>
+          <a target="_blank" href="{Site_url}/api/{$data.name}/{$data.vars.name}" class="btn btn-warning">Preview</a>
+        </div>
+        <div class="col-md-12 mt-3">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" class="form-control" value="{$data.vars.title}">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" class="form-control" rows="5">{$data.vars.description}</textarea>
+          </div>
+          <div class="form-group">
+            <input class="check" name="status" type="checkbox" {If: $data.vars.status} checked {/If} /> Published ?</p>
+          </div>
+          <input type="hidden" id="dataContent" name="content" value="{$data.vars.content}">
+        </div>
+      </div>
+    </form>
+    <div class="col-xl-12 mt-3">
+      <div id="vars"></div>
+      <button id="new" class="btn btn-success mb-3">Add new</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let json = {$data.vars.content};
+// init classs
+const j = new iJson();
+// import json file
+j.importList(json);
+// btn handlers
+window.new.onclick = () => {
+  // create new key value
+  j.createList(window.vars,"key","value");
+}
+// generate json code
+window.store.onclick = () => {
+  window.dataContent.value = j.exportList();
+  window.store.textContent = 'Success';
+  return true;
+};
+</script>

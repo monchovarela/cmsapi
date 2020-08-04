@@ -1,0 +1,23 @@
+{Partial: inc/head.html}
+{If: App::isLogged()}
+    <div class="dash d-block">
+        {Partial: inc/navigation.html}
+        <div class="dash-app">
+            <header class="dash-toolbar">
+                <a href="javascaript:void(0);" class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <div class="tools"></div>
+            </header>
+            <main class="dash-content">
+                <div class="container-fluid">
+                    {$data.content}
+                </div>
+            </main>
+        </div>
+    </div>
+{Else}
+{$data.content}
+{/If}
+
+{Partial: inc/footer.html}

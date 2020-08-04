@@ -1,0 +1,10 @@
+[{
+    "name": "Gallery",
+    "description": "Gallery module  with Reactjs",
+    "filename": "gallery",
+    "icon": "fas fa-image",
+    "author": "Moncho Varela",
+    "url": "https:\/\/monchovarela.es",
+    "version": "1.0.0",
+    "enabled": true
+}]

@@ -1,0 +1,64 @@
+<div class="container-fluid">
+      <form method="post">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="float-md-left mt-3">
+              <input type="submit" name="update" class="btn btn-primary" value="Save" />
+              <a href="{Site_url}/{$data.name}" class="btn btn-danger">Cancel</a>
+            </div>
+            <div class="float-md-right mt-3">
+              <a target="_blank" href="{Site_url}/api/{$data.name}/{?= ($data.page.category) ? $data.page.category : 'default' ?}/{$data.page.name}" class="btn btn-info">Json</a>
+              <a target="_blank" href="{Site_url}/preview/{$data.name}/{$data.page.name}" class="btn btn-warning">Preview Html</a>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-xl-4 mb-3">
+            <div class="form-group">
+              <label>Title</label>
+              <input type="text" name="title" class="form-control" value="{$data.page.title}" required/>
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <input type="text" name="description" class="form-control" value="{$data.page.description}" required/>
+            </div>
+            <div class="form-group">
+              <label>Image</label>
+              <input type="text" name="image" class="form-control" value="{$data.page.image}"/>
+            </div>
+            <div class="form-group">
+              <label>Keywords</label>
+              <input type="text" name="keywords" class="form-control" value="{$data.page.keywords}"/>
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <input type="text" name="category" class="form-control" value="{$data.page.category}"/>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" name="status" type="checkbox" {If: $data.page.status} checked {/If} />
+              <label class="form-check-label" for="" >Published ?</label>
+            </div>
+          </div>
+          <div class="col-xl-8 mb-3">
+            <div class="form-group">
+              <label>Content</label>
+              <textarea name="content" id="editor" class="form-control" rows="20">{$data.page.content|e}</textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+
+<link rel="stylesheet" href="{Assets: css/editor.min.css}" rel="stylesheet">
+<script rel="javascript" src="{Assets: js/editor.min.js}"></script>
+<script>
+let editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+  lineNumbers: true,
+  lineWrapping: true,
+  tabMode: 'indent',
+  mode: 'text/html',
+  theme: 'seti'
+});
+</script>

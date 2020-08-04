@@ -1,0 +1,34 @@
+<div class="dash-nav dash-nav-dark">
+    <header>
+        <a href="javascript:void(0);" class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </a>
+        <a href="index.html" class="spur-logo">
+          <i class="fas fa-bolt"></i> 
+          <span>Api</span>
+        </a>
+    </header>
+    <nav class="dash-nav-list">
+
+      <a {If: $data.title==='Dashboard' } class="dash-nav-item text-primary" {Else}   class="  dash-nav-item" {/If} href="{Site_url}">
+        <i class="fas fa-home"></i> Dashboard </a>
+
+      {?= App::loadExtNav() ?}
+
+      {If: App::isAdmin()}
+        <a {If: $data.title==='users' } class="dash-nav-item text-primary" {Else}   class="  dash-nav-item" {/If} href="{Site_url}/users">
+         <i class="fas fa-users"></i> Users </a>
+
+        <a {If: $data.title==='Settings' } class="dash-nav-item text-primary" {Else}   class="dash-nav-item" {/If} 
+        href="{Site_url}/settings">
+          <i class="fas fa-toolbox"></i> Settings</a>
+      {/If}
+
+      <a class="dash-nav-item" href="{Site_url}/logout"> 
+        <i class="fas fa-lock"></i>Logout </a>
+
+    </nav>
+</div>
+
+
+

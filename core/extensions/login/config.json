@@ -1,0 +1,10 @@
+[{
+    "name": "Login",
+    "description": "Login module for API",
+    "filename": "login",
+    "icon": "building",
+    "author": "Moncho Varela",
+    "url": "https:\/\/monchovarela.es",
+    "version": "1.0.0",
+    "enabled": true
+}]

@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-xl-3 mb-md-2">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-4">
+            <i class="fa fa-image fa-3x text-dark"></i>
+          </div>
+          <div class="col-xl-8">
+            <b>Images</b> <br> {?= File::formatBytes(Dir::size(ROOT.'/public/images')) ?}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 mb-md-2">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-4">
+            <i class="fa fa-folder fa-3x text-dark"></i>
+          </div>
+          <div class="col-xl-8">
+            <b>Documents</b> <br> {?= File::formatBytes(Dir::size(ROOT.'/public/documents')) ?}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 mb-md-2">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-4">
+            <i class="fas fa-headphones fa-3x text-dark"></i>
+          </div>
+          <div class="col-xl-8">
+            <b>Audio</b> <br> {?= File::formatBytes(Dir::size(ROOT.'/public/audio')) ?}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 mb-md-2">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-4">
+            <i class="fa fa-video fa-3x text-dark"></i>
+          </div>
+          <div class="col-xl-8">
+            <b>Video</b> <br> {?= File::formatBytes(Dir::size(ROOT.'/public/video')) ?}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+<div class="row mt-5">
+  <div class="col-xl-6">
+    <div class="card spur-card">
+      <div class="card-header bg-dark text-white">
+          <div class="spur-card-icon"><i class="fas fa-info"></i></div>
+          <div class="spur-card-title">Log</div>
+          <div class="spur-card-menu">
+              <div class="dropdown show">
+                  <a class="spur-card-menu-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                    {If: App::isAdmin()}
+                      <form method="post">
+                        <input type="submit" class="btn btn-link" name="clearlog" value="Clear log" />
+                        {? App::cleanLog() ?}
+                      </form>
+                    {/If}
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="card-body p-0" style="height:20em;overflow-y: scroll">
+        <div class="list-group">
+        {Loop: App::log() as $item}
+          <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{$item.title}</h5>
+              <small>{$item.hour}</small>
+            </div>
+            <p class="mb-1"><small><b>Date: </b>{$item.date} <b>User: </b>{$item.user}</small></p>
+          </div>
+        {/Loop}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6">
+    <div class="card spur-card">
+      <div class="card-header bg-dark text-white">
+          <div class="spur-card-icon">
+              <i class="fas fa-info"></i>
+          </div>
+          <div class="spur-card-title"> Hosting info </div>
+      </div>
+      <div class="card-body p-0" style="height:20em;overflow-y: scroll">
+        <ul class="list-group">
+          <li class="list-group-item"><b>Perm: Public</b> {?= Dir::checkPerm(ROOT.'/public') ?}</li>
+          <li class="list-group-item"><b>Perm: Core</b> {?= Dir::checkPerm(ROOT.'/core') ?}</li>
+          <li class="list-group-item"><b>Perm: Index</b> {?= Dir::checkPerm(ROOT.'/index.php') ?}</li>
+          <li class="list-group-item"><b>Perm: Log</b> {?= Dir::checkPerm(ROOT.'/log.txt') ?}</li>
+          <li class="list-group-item"><b>Version</b> {?= phpversion() ?}</li>
+          <li class="list-group-item"><b>Root</b> {?= ROOT ?}</li>
+          <li class="list-group-item"><b>Debug</b> {?= (DEV_MODE) ? '<span class="text-danger">True</span>' : '<span class="text-primary">True</span>'  ?}</li>
+          <li class="list-group-item"><b>Max upload size: </b> {?= ini_get('post_max_size') ?}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

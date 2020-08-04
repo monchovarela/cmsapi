@@ -1,0 +1,85 @@
+[draggable] {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+	/* Required to make elements draggable in old WebKit */
+	-khtml-user-drag: element;
+	-webkit-user-drag: element;
+	padding: 0.2em;
+	width: 42em;
+	overflow: hidden;
+	margin: 5px;
+}
+
+
+@media (min-width:360px){
+	[draggable] {
+		width: 100%;
+	}
+	#vars *{
+		display:block;
+	}
+}
+
+
+
+#vars input,
+#vars select,
+#vars button{
+	display:inline-block;
+	padding:0.5em;
+	height: 3em;
+	margin: 2px;
+	background:#ffffff;
+	border:1px solid #ced4da;
+	color:#1e232d;
+}
+
+#vars button {
+	width: 3em;
+	border-radius: 2px;
+	font-weight: bolder;
+	background:#fc413f;
+	border:1px solid #fc413f;
+	color:#ffffff;
+}
+
+#vars .key span {
+	user-select: none;
+	display: block;
+	text-align: center;
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 7px 5px;
+	padding:0.3em;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	background:white;
+	border: 1px solid white;
+	color:#000000;
+	font-weight:bold;
+}
+.drag-drop {
+	background: #ff615c;
+	transition: background 500ms ease;
+}
+
+.drag-over {
+	background: #fcae3f;
+	transition: background 500ms ease;
+}
+
+
+.drag-move {
+	background: #3f84fc;
+	transition: background 500ms ease;
+}
+
+
+.drag-start {
+	background: #727f94;
+	transition: background 500ms ease;
+}

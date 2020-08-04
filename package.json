@@ -1,0 +1,11 @@
+{
+  "name": "prepros-project",
+  "version": "1.0.0",
+  "description": "This is a dummy package.json file created by Prepros to manage packages with NPM. You can edit this file to add your own information.",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  }
+}

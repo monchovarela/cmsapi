@@ -1,0 +1,97 @@
+<form method="post" autocomplete="off">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <input type="submit" name="update" class="btn btn-primary" value="Save" />
+      <a href="{Site_url}/{$data.name}" class="btn btn-danger">Cancel</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>User name</label>
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          value="{$data.user.name}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>User email</label>
+        <input
+          type="text"
+          name="email"
+          class="form-control"
+          value="{$data.user.email}"
+          required
+        />
+      </div>
+      {If: Session::get('api_role') == 'admin'}
+      <div class="form-group">
+        <label>User role</label>
+        <select name="role" class="form-control">
+          <option value="{$data.user.role}"> -- {$data.user.role} ---</option>
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+        </select>
+      </div>
+      {/If}
+      <div class="form-group">
+        <label>User password</label>
+        <input type="password" name="password" class="form-control" value="" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Secret Token</label>
+        <input
+          type="text"
+          name="secret_token"
+          class="form-control"
+          value="{$data.user.secret_token}"
+          disabled
+        />
+      </div>
+      <div class="form-group">
+        <label>Token</label>
+        <input
+          type="text"
+          id="apikey"
+          name="token"
+          class="form-control"
+          value="{$data.user.token}"
+        />
+        <button id="keygen" class="btn btn-sm btn-primary">
+          Generate token
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+  /**
+   * Function to produce UUID.
+   * See: http://stackoverflow.com/a/8809472
+   */
+  function generateUUID() {
+    var d = new Date().getTime();
+    if (window.performance && typeof window.performance.now === "function") {
+      d += performance.now();
+    }
+    var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        var r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+      }
+    );
+    return uuid;
+  }
+  window.keygen.onclick = function () {
+    window.apikey.value = generateUUID();
+    return false;
+  };
+</script>
