@@ -1,0 +1,10 @@
+[{
+	"name": "Demo",
+	"description": "Example extension demo",
+	"filename": "demo",
+	"icon": "fas fa-edit",
+	"author": "Moncho Varela",
+	"url": "https:\/\/monchovarela.es",
+	"version": "1.0.0",
+	"enabled": true
+}]

@@ -1,0 +1,60 @@
+<h3>Estructure {$data.title} extension</h3>
+
+<style>
+	pre{
+		max-width:40rem;
+	}
+</style>
+
+<pre class="bg-dark text-light p-2">
+--- demo
+----- src
+------- controllers ( optional )
+---------- index.php 
+------- templates ( optional )
+---------- index.html
+------- routes.php
+----- config.json
+</pre>
+
+<p><b>File: </b> config.json</p>
+<pre class="bg-dark text-light p-2">
+[{
+	"name": "Demo", // name of extension
+	"description": "Example extension demo", // description
+	"filename": "demo", // name of folder
+	"icon": "fas fa-edit", // font awesome icon
+	"author": "My name", // author
+	"url": "https:\/\/example.com", // my url
+	"version": "1.0.0", // version
+	"enabled": true // enabled or disabled
+}]
+</pre>
+
+
+<p><b>File: </b> src/controllers/index.php</p>
+<pre class="bg-dark text-light p-2">
+class Demo_extension {
+	public function init() {
+		// check if user is logged
+		if(App::isLogged()) {
+			// html template
+			$content = App::partial(EXTENSIONS.'/demo/src/templates/index.html');
+			echo App::page(array(
+				'title' => 'Demo',
+				'content' => $content
+			));
+		} else App::die();
+	}
+}
+</pre>
+
+<p><b>File: </b> src/routes.php</p>
+<pre class="bg-dark text-light p-2">
+$R->Route("/demo", function () {
+  include_once EXTENSIONS.'/demo/src/controllers/index.php';
+  // init class
+  $Demo = new Demo_extension();
+  $Demo->init();
+});
+</pre>
