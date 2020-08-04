@@ -190,7 +190,7 @@ class Pages_extension
     {
       if(array_key_exists('insert',$_POST)){
         $arr = array(
-          'name' => Text::slug(Url::post('title')),
+          'name' => Text::slug(ucfirst(Url::post('title'))),
           'title' => Url::post('title'),
           'description' => Url::post('description'),
           'image' => Url::post('image'),

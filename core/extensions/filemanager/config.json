@@ -1,10 +1,1 @@
-[{
-    "name": "Filemanager",
-    "description": "Filemanager module with Reactjs",
-    "filename": "filemanager",
-    "icon": "fas fa-folder",
-    "author": "Moncho Varela",
-    "url": "https:\/\/monchovarela.es",
-    "version": "1.0.0",
-    "enabled": true
-}]
+[{"name":"Filemanager","description":"Filemanager module with Reactjs","filename":"filemanager","icon":"fas fa-folder","author":"Moncho Varela","url":"https:\/\/monchovarela.es","version":"1.0.0","enabled":true}]
