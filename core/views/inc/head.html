@@ -14,6 +14,18 @@
 
   <script>
     var site_url = '{Site_url}';
+    var mobileBreakpoint = window.matchMedia("(max-width: 991px )");
+    var message = function (txt) {
+        var div = document.createElement('div');
+        div.id = 'message-info';
+        div.className = 'info-msg';
+        div.innerHTML = '<div>'+txt+'</div>';
+        document.body.appendChild(div);
+        var w = setTimeout(function () {
+            document.body.removeChild(div);
+            clearTimeout(w);
+        }, 3000);
+    };
   </script>
   
   {Action: head}

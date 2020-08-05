@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>API - Gallery</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600|Open+Sans:400,600,700" rel="stylesheet">
+
+  <link rel="stylesheet" href="http://localhost/cmsapi/public/assets/css/api.min.css" />
+
+  <script>
+    var site_url = 'http://localhost/cmsapi';
+    var mobileBreakpoint = window.matchMedia("(max-width: 991px )");
+    var message = function (txt) {
+        var div = document.createElement('div');
+        div.id = 'message-info';
+        div.className = 'info-msg';
+        div.innerHTML = '<div>'+txt+'</div>';
+        document.body.appendChild(div);
+        var w = setTimeout(function () {
+            document.body.removeChild(div);
+            clearTimeout(w);
+        }, 3000);
+    };
+  </script>
+  
+  <link rel="stylesheet" href="http://localhost/cmsapi/core/extensions/gallery/src/assets/style.css?1596626954"/></head>
+
+<body>    <div class="dash d-block">
+        <div class="dash-nav dash-nav-dark">
+    <header>
+        <a href="javascript:void(0);" class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </a>
+        <a href="index.html" class="spur-logo">
+          <i class="fas fa-bolt"></i> 
+          <span>Api</span>
+        </a>
+    </header>
+    <nav class="dash-nav-list">
+
+      <a    class="  dash-nav-item"  href="http://localhost/cmsapi">
+        <i class="fas fa-home"></i> Dashboard </a>
+
+      <a  class="dash-nav-item  " href="http://localhost/cmsapi/articles"> 
+                      <i class="fas fa-pencil-ruler"></i>Articles 
+                    </a><a  class="dash-nav-item  " href="http://localhost/cmsapi/filemanager"> 
+                      <i class="fas fa-folder"></i>Filemanager 
+                    </a><a  class="dash-nav-item text-primary " href="http://localhost/cmsapi/gallery"> 
+                      <i class="fas fa-image"></i>Gallery 
+                    </a><a  class="dash-nav-item  " href="http://localhost/cmsapi/ijson"> 
+                      <i class="fas fa-code"></i>Ijson 
+                    </a><a  class="dash-nav-item  " href="http://localhost/cmsapi/pages"> 
+                      <i class="fas fa-file-alt"></i>Pages 
+                    </a>
+              <a    class="  dash-nav-item"  href="http://localhost/cmsapi/users">
+         <i class="fas fa-users"></i> Users </a>
+
+        <a    class="dash-nav-item"  
+        href="http://localhost/cmsapi/settings">
+          <i class="fas fa-toolbox"></i> Settings</a>
+      
+      <a class="dash-nav-item" href="http://localhost/cmsapi/logout"> 
+        <i class="fas fa-lock"></i>Logout </a>
+
+    </nav>
+</div>
+
+
+
+        <div class="dash-app">
+            <header class="dash-toolbar">
+                <a href="javascaript:void(0);" class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <div class="tools"></div>
+            </header>
+            <main class="dash-content">
+                <div class="container-fluid">
+                    <div id="root"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</div>
+
+	<!-- api js -->
+	<script rel="javascript" src="http://localhost/cmsapi/public/assets/js/api.min.js"></script>
+  
+<script rel="javascirpt" src="http://localhost/cmsapi/core/extensions/gallery/src/assets/index.js?1596626954?1596626954"></script>
+
+</body>
+
+</html>

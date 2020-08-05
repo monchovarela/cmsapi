@@ -10,7 +10,7 @@ define('ROUTES', CORE.'/routes');
 define('PUBLICFOLDER', ROOT.'/public');
 
 define('ACCESS', true);
-define('DEV_MODE', false);
+define('DEV_MODE', true);
 
 if (DEV_MODE) {
     error_reporting(E_ALL);

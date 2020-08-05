@@ -20,7 +20,6 @@ class App
     if(!Dir::exists(PUBLICFOLDER.'/documents')) Dir::create(PUBLICFOLDER.'/documents');
     if(!Dir::exists(PUBLICFOLDER.'/images')) Dir::create(PUBLICFOLDER.'/images');
     if(!Dir::exists(PUBLICFOLDER.'/video')) Dir::create(PUBLICFOLDER.'/video');
-    
   }
 
   /**

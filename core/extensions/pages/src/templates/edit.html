@@ -2,13 +2,19 @@
       <form method="post">
         <div class="row">
           <div class="col-xl-12">
-            <div class="float-md-left mt-3">
-              <input type="submit" name="update" class="btn btn-primary" value="Save" />
-              <a href="{Site_url}/{$data.name}" class="btn btn-danger">Cancel</a>
+            <div class="float-md-left">
+              <input type="submit" name="update" class="btn btn-sm btn-outline-primary rounded-0" value="Save" />
+              <a href="{Site_url}/{$data.name}" class="btn btn-sm btn-outline-danger rounded-0">Cancel</a>
             </div>
-            <div class="float-md-right mt-3">
-              <a target="_blank" href="{Site_url}/api/{$data.name}/{?= ($data.page.category) ? $data.page.category : 'default' ?}/{$data.page.name}" class="btn btn-info">Json</a>
-              <a target="_blank" href="{Site_url}/preview/{$data.name}/{$data.page.name}" class="btn btn-warning">Preview Html</a>
+            <div class="float-md-right">
+              <a 
+                target="_blank" 
+                href="{Site_url}/api/{$data.name}/{?= ($data.page.category) ? $data.page.category : 'default' ?}/{$data.page.name}" 
+                class="btn btn-sm btn-outline-info rounded-0"><i class="fa fa-code mr-2"></i>json</a>
+              <a 
+                target="_blank" 
+                href="{Site_url}/preview/{$data.name}/{$data.page.name}" 
+                class="btn btn-sm btn-outline-warning rounded-0"><i class="fa fa-code mr-2"></i>Preview</a>
             </div>
           </div>
         </div>

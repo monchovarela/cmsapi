@@ -1,122 +1,119 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="float-md-left mt-3">
-        {If: App::isAdmin()}
-        <a href="{Site_url}/{$data.name}/new" class="btn btn-primary"
-          >New Page</a
-        >
-        {/If}
-        <a
-          target="_blank"
-          class="btn btn-warning"
-          href="{Site_url}/api/{$data.name}/all/all"
-          >Json preview</a
-        >
-      </div>
-      <div class="float-md-right mt-3">
-        {If: $data.total > 0} {If: $data.num > 0}
-        <a
-          class="btn btn-default"
-          href="{Site_url}/{$data.name}/{?= $data.num - 1?}"
-          ><i class="fa fa-arrow-left"></i
-        ></a>
-        {/If}
+<div class="row">
+  <div class="col-md-12">
+    <div class="float-md-left">
+      {If: App::isAdmin()}
+      <a href="{Site_url}/{$data.name}/new" 
+      class="btn btn-sm btn-outline-primary rounded-0">
+      <i class="fa fa-file mr-2"></i>New Page</a>
+      {/If}
+      <a
+        target="_blank"
+        class="btn btn-sm btn-outline-info rounded-0"
+        href="{Site_url}/api/{$data.name}/all/all">
+        <i class="fa fa-code mr-2"></i> preview</a>
+    </div>
+    <div class="float-md-right mt-3">
+      {If: $data.total > 0} {If: $data.num > 0}
+      <a
+        class="btn btn-default"
+        href="{Site_url}/{$data.name}/{?= $data.num - 1?}"
+        ><i class="fa fa-arrow-left"></i
+      ></a>
+      {/If}
 
-        <span class="btn btn-default">{$data.num} - {$data.last}</span>
-        {If: $data.num < $data.last}
-        <a
-          class="btn btn-default"
-          href="{Site_url}/{$data.name}/{?= $data.num + 1?}"
-          ><i class="fa fa-arrow-right"></i
-        ></a>
-        {/If} {Else}
-        <p class="btn btn-danger">
-          No pages yet
-        </p>
-        {/If}
-      </div>
+      <span class="btn btn-default">{$data.num} - {$data.last}</span>
+      {If: $data.num < $data.last}
+      <a
+        class="btn btn-default"
+        href="{Site_url}/{$data.name}/{?= $data.num + 1?}"
+        ><i class="fa fa-arrow-right"></i
+      ></a>
+      {/If} {Else}
+      <p class="btn btn-danger">
+        No pages yet
+      </p>
+      {/If}
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12 mt-3">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Search for title.."
-        id="myInput"
-        onkeyup="searchPages('{$data.name}')"
-      />
-      <ul id="mySearch" class="list-group"></ul>
-      <table id="table" class="table table-responsive-lg table-striped mt-3">
-        <thead class="bg-dark text-light">
-          <tr>
-            <th class="text-align-center">#</th>
-            <th>Name</th>
-            <th>Title</th>
-            <th>Created</th>
-            <th>Updated</th>
-            <th>Published</th>
-            {If: App::isAdmin()}
-            <th class="text-align-center">Options</th>
-            {/If}
-          </tr>
-        </thead>
-        <tbody>
-          {If: $data.total > 0} {Loop: $data.pages as $item}
-          <tr>
-            <td class="text-align-center">{$item.uid}</td>
-            <td>
-              <a
-                target="_blank"
-                href="{Site_url}/api/{$data.name}/{$item.category}/{$item.name}"
-                >{$item.name|lower}</a
-              >
-            </td>
-            <td>{$item.title|short}</td>
-            <td>{$item.created}</td>
-            <td>{$item.updated}</td>
-            {If: $item.status}
-            <td class="text-primary text-align-center">True</td>
-            {Else}
-            <td class="text-danger text-align-center">False</td>
-            {/If} {If: App::isAdmin()}
-            <td class="text-align-center">
+</div>
+<div class="row">
+  <div class="col-md-12 mt-3">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Search for title.."
+      id="myInput"
+      onkeyup="searchPages('{$data.name}')"
+    />
+    <ul id="mySearch" class="list-group"></ul>
+    <table id="table" class="table table-responsive-lg table-striped mt-3">
+      <thead class="bg-dark text-light">
+        <tr>
+          <th class="text-align-center">#</th>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Created</th>
+          <th>Updated</th>
+          <th>Published</th>
+          {If: App::isAdmin()}
+          <th class="text-align-center">Options</th>
+          {/If}
+        </tr>
+      </thead>
+      <tbody>
+        {If: $data.total > 0} {Loop: $data.pages as $item}
+        <tr>
+          <td class="text-align-center">{$item.uid}</td>
+          <td>
+            <a
+              target="_blank"
+              href="{Site_url}/api/{$data.name}/{$item.category}/{$item.name}"
+              >{$item.name|lower}</a
+            >
+          </td>
+          <td>{$item.title|short}</td>
+          <td>{$item.created}</td>
+          <td>{$item.updated}</td>
+          {If: $item.status}
+          <td class="text-primary text-align-center">True</td>
+          {Else}
+          <td class="text-danger text-align-center">False</td>
+          {/If} {If: App::isAdmin()}
+          <td class="text-align-center">
 
-              <div class="dropdown">
-                <button class="btn btn-sm btn-default dropdown-toggle"
-                        type="button" id="pageOptions" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-toolbox mr-2"></i> Options
-                </button>
-                <div class="dropdown-menu" aria-labelledby="pageOptions">
+            <div class="dropdown">
+              <button class="btn btn-sm btn-default dropdown-toggle"
+                      type="button" id="pageOptions" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-toolbox mr-2"></i> Options
+              </button>
+              <div class="dropdown-menu" aria-labelledby="pageOptions">
+                <a
+                  target="_blank"
+                  href="{Site_url}/preview/{$data.name}/{$item.name}"
+                  class="dropdown-item"
+                  title="Edit">Preview</a>
                   <a
-                    target="_blank"
-                    href="{Site_url}/preview/{$data.name}/{$item.name}"
-                    class="dropdown-item"
-                    title="Edit">Preview</a>
-                    <a
-                    href="{Site_url}/{$data.name}/edit/{$item.uid}"
-                    class="dropdown-item"
-                    title="Edit">Edit</a>
-                  <a
-                    href="{Site_url}/{$data.name}/rename/{$item.uid}"
-                    class="dropdown-item"
-                    title="Rename">Rename</a>
-                  <a
-                    href="{Site_url}/{$data.name}/del/{$item.uid}"
-                    onclick="return confirm('Are you sure ?')"
-                    class="dropdown-item text-danger"
-                    title="Delete">Delete</a>
-                </div>
+                  href="{Site_url}/{$data.name}/edit/{$item.uid}"
+                  class="dropdown-item"
+                  title="Edit">Edit</a>
+                <a
+                  href="{Site_url}/{$data.name}/rename/{$item.uid}"
+                  class="dropdown-item"
+                  title="Rename">Rename</a>
+                <a
+                  href="{Site_url}/{$data.name}/del/{$item.uid}"
+                  onclick="return confirm('Are you sure ?')"
+                  class="dropdown-item text-danger"
+                  title="Delete">Delete</a>
               </div>
+            </div>
 
-            </td>
-            {/If}
-          </tr>
-          {/Loop} {/If}
-        </tbody>
-      </table>
-    </div>
+          </td>
+          {/If}
+        </tr>
+        {/Loop} {/If}
+      </tbody>
+    </table>
   </div>
 </div>

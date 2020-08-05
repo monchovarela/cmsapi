@@ -28,17 +28,15 @@ const Gallery = () => {
     <Fragment>
       <Row>
         <Col num="12">
-          <Link to="/create" className="btn btn-dark mb-3 mr-2">
-            Create new
+          <Link to="/create" className="btn btn-sm btn-outline-primary rounded-0 mr-2">
+            <i className="fa fa-plus mr-2"></i> new
           </Link>
           <a
             title="Preview Json gallery"
-            className="btn btn-warning mb-3"
+            className="btn btn-sm btn-outline-info rounded-0"
             target="_blank"
-            href={`${site_url}/api/gallery/all`}
-          >
-            <i className="fa fa-code text-light"></i>
-          </a>
+            href={`${site_url}/api/gallery/all`}>
+            <i className="fa fa-code"></i></a>
         </Col>
       </Row>
       <Row>

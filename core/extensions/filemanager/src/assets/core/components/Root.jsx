@@ -89,12 +89,10 @@ const Root = () => {
         <Col num="12">
           <FloatLeft m="3">
             <InputFile id="fileElem" labelId="filelabel" fn={handleUpload} />
-
             <a
               href={`${site_url}/api/filemanager/all`}
               target="_blank"
-              className="btn btn-primary"
-            >
+              className="btn btn-outline-info rounded-0">
               <i className="fa fa-code"></i>
             </a>
           </FloatLeft>
@@ -113,10 +111,10 @@ const Root = () => {
           <UploadProgress />
 
           {/* search input and select */}
-          <form className="form-inline ml-2 mb-3">
+          <form className="form-inline mb-3">
             <div className="form-group">
               <input
-                className="form-control"
+                className="form-control ml-2"
                 type="search"
                 placeholder="Search"
                 onKeyUp={handleSearch}

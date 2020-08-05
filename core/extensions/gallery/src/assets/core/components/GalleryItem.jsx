@@ -99,7 +99,6 @@ const GalleryItem = ({ match }) => {
     setPoster(site_url+element)                 
   }
 
-
   return loaded ? (
     <Fragment>
       <UploadProgress />
@@ -114,29 +113,26 @@ const GalleryItem = ({ match }) => {
             />
             <label
               id="filelabel"
-              className="d-inline btn btn-dark"
-              htmlFor="fileElem"
-            >
-              Upload image
+              className="d-inline btn btn-outline-dark"
+              htmlFor="fileElem">
+              <i className="fa fa-image mr-2"></i>Upload image
             </label>
           </div>
 
-          <div className="thumbnails">
+          <div className="thumbnails bg-light">
             {data.images
               ? data.images.small.map((item, index) => (
                   <div className="thumbnail" key={index}>
                     <button
                       title="Delete photo"
-                      className="btn btn-sm btn-rounded btn-danger"
-                      onClick={() => handleDeletePhoto(item)}
-                    >
+                      className="btn btn-sm btn-danger rounded-0"
+                      onClick={() => handleDeletePhoto(item)}>
                       <i className="fa fa-trash"></i>
                     </button>
                     <button
                       title="Add poster"
-                      className="btn btn-sm btn-rounded btn-primary"
-                      onClick={() => changePoster(item)}
-                    >
+                      className="btn btn-sm btn-primary rounded-0"
+                      onClick={() => changePoster(item)}>
                       <i className="fa fa-image"></i>
                     </button>
                     <img key={index} src={`${site_url}/${item}`} />
@@ -202,11 +198,10 @@ const GalleryItem = ({ match }) => {
             <button
               type="submit"
               id="updateBtn"
-              className="btn btn-primary mr-sm-3"
-            >
+              className="btn btn-sm btn-outline-primary rounded-0 mr-sm-3">
               Update
             </button>
-            <Link to="/" className="btn btn-warning">
+            <Link to="/" className="btn btn-sm btn-outline-warning rounded-0">
               Cancel
             </Link>
           </Col>

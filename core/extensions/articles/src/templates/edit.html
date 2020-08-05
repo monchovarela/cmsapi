@@ -7,22 +7,31 @@
           <input 
             type="submit" 
             name="update" 
-            class="btn btn-primary" 
+            class="btn btn-sm btn-outline-primary rounded-0" 
             value="Save" />
           
           <a 
             href="{Site_url}/{$data.name}" 
-            class="btn btn-danger">Cancel</a></div>
+            class="btn btn-sm btn-outline-danger rounded-0">Cancel</a>
+
+        </div>
         <div class="float-md-right mt-2">
-            <a class="btn btn-info" data-toggle="collapse" href="#showMeta" role="button" aria-expanded="false" aria-controls="showMeta">Info</a>
+            <a 
+              class="btn btn-sm btn-outline-info rounded-0" 
+              data-toggle="collapse" href="#showMeta" 
+              role="button" aria-expanded="false" aria-controls="showMeta">
+              <i class="fa fa-info mr-2"></i>Info</a>
             <a 
               target="_blank" 
               href="{Site_url}/api/{$data.name}/{?= ($data.page.category) ? $data.page.category : 'default' ?}/{$data.page.name}" 
-              class="btn btn-warning">Preview</a>
+              class="btn btn-sm btn-outline-dark rounded-0">
+              <i class="fa fa-code mr-2"></i>Preview</a>
             <a 
               target="_blank" 
               href="{Site_url}/preview/{$data.name}/{$data.page.name}" 
-              class="btn btn-warning">Preview Html</a>  
+              class="btn btn-sm btn-outline-dark rounded-0">
+              <i class="fa fa-eye mr-2"></i>Html
+            </a>  
         </div>
     </div>
   </div>

@@ -29,34 +29,30 @@ const Card = (props) => (
         <Link
           title="Edit gallery"
           to={`/${props.data.name}`}
-          className="btn btn-sm btn-primary mr-2"
-        >
-          <i className="fa fa-edit text-light"></i>
+          className="btn btn-sm btn-outline-primary mr-2">
+          <i className="fa fa-edit"></i>
         </Link>
         <a
           title="Preview gallery"
-          className="btn btn-sm btn-info mr-2"
+          className="btn btn-sm btn-outline-info mr-2"
           target="_blank"
-          href={`${site_url}/gallery/p/${props.data.name}`}
-        >
-          <i className="fa fa-eye text-light"></i>
+          href={`${site_url}/gallery/p/${props.data.name}`}>
+            <i className="fa fa-eye"></i>
         </a>
         <a
           title="Preview json gallery"
-          className="btn btn-sm btn-warning"
+          className="btn btn-sm btn-outline-warning"
           target="_blank"
-          href={`${site_url}/api/gallery/${props.data.name}`}
-        >
-          <i className="fa fa-code text-light"></i>
+          href={`${site_url}/api/gallery/${props.data.name}`}>
+            <i className="fa fa-code"></i>
         </a>
       </div>
       <div className="float-right">
         <button
           title="Delete gallery"
-          className="btn btn-sm btn-danger"
-          onClick={props.fn}
-        >
-          <i className="fa fa-trash"></i>
+          className="btn btn-sm btn-outline-danger"
+          onClick={props.fn}>
+            <i className="fa fa-trash"></i>
         </button>
       </div>
     </div>
